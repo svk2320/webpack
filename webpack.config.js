@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 
 module.exports = {
     module: {
@@ -10,9 +9,15 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-                test: /\.jsx$/,
-                exclude: /node_modules/,
-                use: 'jsx-loader'
+              test: /\.jsx$/,
+              exclude: /node_modules/,
+              use: {
+                  loader: "babel-loader",
+                  options: {
+                      cacheDirectory: true,
+                      cacheCompression: false,
+                      }
+                  }
             },
             {
                 test: /\.css$/,
@@ -34,17 +39,9 @@ module.exports = {
             }
         ]
     },
-    entry: './src/index.js',
     plugins: [
       new HtmlWebpackPlugin({
-       title: 'Caching',
       }),
-    ],
-    output: {
-     filename: '[name].[contenthash].js',
-      path: path.resolve(__dirname, 'dist'),
-      clean: true,
-    },
 }; 
 
 // loader evaluated from right to left or button to top so we have to run 
