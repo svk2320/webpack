@@ -40,8 +40,10 @@ module.exports = {
         ]
     },
     plugins: [
-      new HtmlWebpackPlugin({
-      }),
+      new HtmlWebPackPlugin({
+        template: './index.html'
+      })
+    ]
 }; 
 
 // loader evaluated from right to left or button to top so we have to run 
